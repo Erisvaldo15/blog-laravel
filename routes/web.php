@@ -14,8 +14,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post');
 Route::get('/author/{author:id}', [AuthorController::class, 'index'])->name('author');
 
-Route::resource('login', SignInController::class)->only(['index', 'store']);
+Route::controller(SignInController::class)->group(function () {
+    Route::get('/login', 'index')->name('view-login');
+    Route::get('/logout', 'destroy')->name('logout');
+    Route::post('/login', 'store')->name('login');
+});
+
+
 Route::delete('/login/destroy', [LoginController::class, 'destroy']);
 Route::resource('/register', SignUpController::class)->only('index', 'store');
-
 Route::resource('profile', ProfileController::class)->middleware('auth');

@@ -1,7 +1,6 @@
 @extends('template')
 
 @section('content')
-    @include('components.modal_edit')
     <div class="bg-white py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
@@ -43,7 +42,9 @@
                                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                 </svg>
                             </div>
-                            <a href="" class="hover:text-orange-500 ml-16 text-lg font-medium leading-6 text-gray-900">Edit your posts</a>
+                            <a href="{{ route('profile.show', session('logged')) }}" class="hover:text-orange-500 ml-16 text-lg 
+                                font-medium leading-6 text-gray-900"> View your posts
+                            </a>
                         </dt>
                         <dd class="mt-2 ml-16 text-base text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing
                             elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</dd>
@@ -60,7 +61,7 @@
                                         d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                                 </svg>
                             </div>
-                            <a href="" class="hover:text-orange-500 ml-16 text-lg font-medium leading-6 text-gray-900">See your favorite posts</a>
+                            <a href="#" class="hover:text-orange-500 ml-16 text-lg font-medium leading-6 text-gray-900">See your favorite posts</a>
                         </dt>
                         <dd class="mt-2 ml-16 text-base text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing
                             elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</dd>
@@ -87,4 +88,5 @@
             </div>
         </div>
     </div>
+    @include('components.modal_edit')
 @endsection

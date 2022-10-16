@@ -11,7 +11,7 @@ use App\Models\Post;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+    
     public function __construct()
     {
         $this->featured = Post::limit(4)->with(['user', 'comment'])->orderBy('id', 'desc')->get();

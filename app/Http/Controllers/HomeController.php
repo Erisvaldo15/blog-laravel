@@ -10,6 +10,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        // dd(session('logged'));
 
         if($request->input('search')) {
             $thereSearch = true;
@@ -23,7 +24,7 @@ class HomeController extends Controller
         return view('home', [
             'title' => 'Blog',
             "subHeader" => true,
-            "thereIsFooter" => true,
+            "thereIsFooter" => false,
             "thereSearch" => $thereSearch,
             'featured' => $this->featured,
             'posts' => $posts,

@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class SignInController extends Controller
 {
-    
+
     public function index() {
+
+        // dd(session('logged'));
+
         return view('signIn', [
             "title" => "Blog - login",
             "subHeader" => false,
@@ -32,15 +35,22 @@ class SignInController extends Controller
         }
 
         $where = User::where('email', $request->email)->get();
-        $request->session()->put('logged', $where->first()->full_name);
+
+        $request->session()->put('logged', $where->first()->firstName);
+        
         return redirect()->route('profile.index');
     }
 
     public function create() {
     }
 
-    public function destroy() {  
+    public function destroy(Request $request) {  
+
         Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/login')->with('logout', 'Logout realized with success');
     }
 

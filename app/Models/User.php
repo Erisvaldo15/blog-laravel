@@ -32,11 +32,11 @@ class User extends Authenticatable
         return "{$this->firstName} {$this->lastName}";
     }
 
-    public function posts() {
+    public function post() {
        return $this->hasMany(Post::class);
     }
 
-    public function comments() {
+    public function comment() {
         return $this->hasMany(Comment::class); 
     }
     
