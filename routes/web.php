@@ -20,7 +20,5 @@ Route::controller(SignInController::class)->group(function () {
     Route::post('/login', 'store')->name('login');
 });
 
-
-Route::delete('/login/destroy', [LoginController::class, 'destroy']);
 Route::resource('/register', SignUpController::class)->only('index', 'store');
 Route::resource('profile', ProfileController::class)->middleware('auth');

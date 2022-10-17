@@ -31,7 +31,7 @@ class SignInController extends Controller
         $logged = Auth::attempt($validated);
 
         if(!$logged) {
-            return back()->with('Error', 'Ocorreu um erro ao fazer o login.');
+            return back()->with('error', 'Ocorreu um erro ao fazer o login.');
         }
 
         $where = User::where('email', $request->email)->get();

@@ -5,12 +5,14 @@ const menuMobile = document.querySelector('#menu-mobile')
 const buttonProfile = document.querySelector('#user-menu-button')
 const buttonMenu = document.querySelector('#button-menu-mobile')
 
-buttonProfile.addEventListener('click', () => {
-    menuProfile.classList.toggle('hidden')
-})
+if (buttonProfile) {
+    buttonProfile.addEventListener('click', () => {
+        menuProfile.classList.toggle('hidden')
+    })
+}
 
-if(buttonMenu) {
-    
+if (buttonMenu) {
+
     buttonMenu.addEventListener('click', () => {
         menuMobile.classList.toggle('hidden')
     })
@@ -23,7 +25,7 @@ const modalAddPost = document.querySelector('#modal-add-post')
 const containerModal = document.querySelector('#container-modal')
 const cancel = document.querySelector('#cancel-add-post')
 
-if(modalAddPost) {
+if (modalAddPost) {
 
     cancel.addEventListener('click', () => {
         containerModal.classList.toggle('fixed')
