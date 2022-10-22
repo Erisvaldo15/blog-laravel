@@ -34,7 +34,7 @@
                                                 alt="">
                                             <div class="content-author">
                                                 <h5> {{ $post->user->full_name }} </h5>
-                                                <h6 class="my-1"> {{ $post->created_at }} </h6>
+                                                <h6 class="my-1"> Created {{ $post->created_at->diffForHumans() }} </h6>
                                             </div>
                                         </div>
                                         <span class="post-read-more">

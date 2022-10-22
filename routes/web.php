@@ -20,5 +20,5 @@ Route::controller(SignInController::class)->group(function () {
     Route::post('/login', 'store')->name('login');
 });
 
-Route::resource('/register', SignUpController::class)->only('index', 'store');
-Route::resource('profile', ProfileController::class)->middleware('auth');
+Route::resource('/register', SignUpController::class)->only('store', 'create');
+Route::resource('/profile', ProfileController::class)->parameters(['profile' => 'user'])->middleware('auth');

@@ -33,7 +33,10 @@ class HomeController extends Controller
 
     public function create()
     {
-        //
+        return view('page', [
+            "title" => 'Page',
+            "thereIsFooter" => false,
+        ]);
     }
     
     public function store(Request $request)

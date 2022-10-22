@@ -10,9 +10,13 @@ class ProfileController extends Controller
  
     public function index()
     {
+
+        $userLogged = User::where('email','=', session('logged'))->first();
+     
         return view('profile.home', [
-            "title" => "Profile - " . session('logged'),
+            "title" => "Profile - {$userLogged->first()->firstName}",
             "thereIsFooter" => false,
+            "user" => $userLogged,
         ]);
     }
 
@@ -26,30 +30,36 @@ class ProfileController extends Controller
         //
     }
 
-    public function show($user)
+    public function show(User $user)
     {
-        $user = User::where('firstName',$user)->with(['post', 'comment'])->orderBy('id', 'desc')->get();
 
-        // dd($user);
+        dd('show');
+        // $user = User::where('firstName',$user)->with(['post', 'comment'])->orderBy('id', 'desc')->get();
+
+        // // dd($user);
         
-        return view('profile.posts', [
-            "title" => "Posts of {$user->first()->firstName}",
-            "thereIsFooter" => false,
-            "data" => $user,
-        ]);
+        // return view('profile.posts', [
+        //     "title" => "Posts of {$user->first()->firstName}",
+        //     "thereIsFooter" => false,
+        //     "data" => $user,
+        // ]);
 
     }
 
    
-    public function edit()
+    public function edit(User $user)
     {
-        //
+        return view('profile.edit', [
+            "title" => "Edit your profile",
+            "thereIsFooter" => false,
+            "user" => $user,
+        ]);
     }
 
 
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+       dd('updated');
     }
 
     public function destroy($id)

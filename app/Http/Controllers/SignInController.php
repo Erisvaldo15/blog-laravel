@@ -31,12 +31,14 @@ class SignInController extends Controller
         $logged = Auth::attempt($validated);
 
         if(!$logged) {
-            return back()->with('error', 'Ocorreu um erro ao fazer o login.');
+            return back()->withErrors([
+                'not-found' => 'E-mail or password incorrect'
+            ]);
         }
 
         $where = User::where('email', $request->email)->get();
 
-        $request->session()->put('logged', $where->first()->firstName);
+        $request->session()->put('logged', $where->first()->email);
         
         return redirect()->route('profile.index');
     }

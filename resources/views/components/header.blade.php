@@ -29,32 +29,40 @@
                     class="block w-full appearance-none rounded-none 
                 rounded-b-md border border-gray-300 px-3 py-1 text-gray-900 placeholder-gray-500 focus:z-10 
                 focus:border-orange-500 focus:outline-none focus:ring-orange-500 sm:text-sm"
-                    placeholder="Password">
+                    placeholder="Search by posts">
             </form>
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 @if (auth()->user())
                     <div class="relative ml-3">
                         <div>
                             <button type="button"
-                                class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                class="flex rounded-full bg-orange-500 text-sm focus:outline-none focus:ring-2 focus:ring-white 
+                                focus:ring-offset-2 focus:ring-offset-black"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
+                                {{-- @if ($user->thumb)
+                                    <img src="{{ $user->thumb }}" alt="Image of profile">
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-2 text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 
+                                            20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 
+                                            0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                @endif --}}
                             </button>
                         </div>
                         <div class="flex flex-col items-center mt-6 hidden absolute right-0 z-10 mt-2 w-48 origin-top-right 
                         rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                             id="menu-profile">
-                            <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="{{ route('profile.index') }}" id="user-menu-item-0"
                                 class="block px-4 py-2 text-sm
                             text-gray-700"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" id="user-menu-item-0 "class="block px-4 py-2 text-sm text-gray-700"
-                                role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                            {{-- <a href="{{ route('profile.edit', $user->id) }}" id="user-menu-item-0 "class="block px-4 py-2 text-sm text-gray-700"
+                                role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> --}}
                             <a href="{{ route('logout') }}" id="user-menu-item-0"
                                 class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Sign out</a>
@@ -67,7 +75,7 @@
                         Sign in
                     </a>
                 @endif
-                <a href="{{ route('register.index') }}"
+                <a href="{{ route('register.create') }}"
                     class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border 
                     border-transparent bg-orange-600 px-4 py-2 text-base font-medium text-white shadow-sm 
                     hover:bg-orange-700">
@@ -170,7 +178,7 @@
                     <a href="#" class="text-base font-medium text-gray-900 hover:text-gray-700">Security</a>
                 </div>
                 <div>
-                    <a href="{{ route('register.index') }}"
+                    <a href="{{ route('register.create') }}"
                         class="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-700">Sign
                         up</a>
                     <p class="mt-6 text-center text-base font-medium text-gray-500">

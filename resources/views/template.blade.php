@@ -24,7 +24,7 @@
     <header>
         @include('components.header')
     </header>
-    <main>
+    <main class="p-6">
         @yield('content')
     </main>
     @if ($thereIsFooter)

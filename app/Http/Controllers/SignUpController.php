@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use app\Models\User;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Session;
 
 class SignUpController extends Controller
 {
-    public function index()
+    public function create()
     {
-        return view('signUp', [
+        return view("signUp", [
             "title" => "Blog - Sign Up",
             "subHeader" => false,
             "thereIsFooter" => false,
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(RegisterRequest $request) {
 
-        $request->validate([
-                "firstName" => "required|min:3",
-                "lastName" => "required|min:3",
-                "email" => "required|email",
-                "password" => "required|min:6",
-                "about" => "nullable"
-            ]
-        );
+        $validated = $request->validated();
 
-        dd('passou');
+        $userFound = User::where('email', '=', $validated['email'])->first();
 
+        if(!$userFound) {   
+            $create = User::create($validated);
+            return $create;
+        }
+
+        return back()->withErrors(['found' => 'E-mail já existente']);
     }
 
 }
