@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class ProfileController extends Controller
+class ProfileController 
 {
  
     public function index()
     {
+        $userLogged = User::where('email','=', session('logged'));
+        $posts = Post::where('user_id','=', $userLogged->first()->id)->paginate(3);
 
-        $userLogged = User::where('email','=', session('logged'))->first();
-     
         return view('profile.home', [
             "title" => "Profile - {$userLogged->first()->firstName}",
+            "thereIsHeader" => true,
             "thereIsFooter" => false,
-            "user" => $userLogged,
+            "posts" => $posts,
         ]);
     }
 

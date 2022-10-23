@@ -23,7 +23,7 @@ class HomeController extends Controller
     
         return view('home', [
             'title' => 'Blog',
-            "subHeader" => true,
+            "thereIsHeader" => true,
             "thereIsFooter" => false,
             "thereSearch" => $thereSearch,
             'featured' => $this->featured,

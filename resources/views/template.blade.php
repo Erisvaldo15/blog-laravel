@@ -21,9 +21,11 @@
 </head>
 
 <body>
+    @if ($thereIsHeader)
     <header>
         @include('components.header')
     </header>
+    @endif
     <main class="p-6">
         @yield('content')
     </main>

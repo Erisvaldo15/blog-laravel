@@ -27,7 +27,7 @@ class PostController
 
         return view('post', [
             "title" => "Post - $post->slug",
-            "subHeader" => true,
+            "thereIsHeader" => false,
             "thereIsFooter" => false,
             "post" => $post,
         ]);
