@@ -15,7 +15,7 @@ class SignInController extends Controller
 
         return view('signIn', [
             "title" => "Blog - login",
-            "subHeader" => false,
+            "thereIsHeader" => true,
             "thereIsFooter" => false,
         ]);
     }

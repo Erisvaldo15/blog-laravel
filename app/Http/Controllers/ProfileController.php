@@ -11,15 +11,15 @@ class ProfileController
  
     public function index()
     {
-        $userLogged = User::where('email','=', session('logged'));
-        $posts = Post::where('user_id','=', $userLogged->first()->id)->paginate(3);
+        $posts = Post::where('user_id','=', auth()->user()->id)->paginate(3);
 
         return view('profile.home', [
-            "title" => "Profile - {$userLogged->first()->firstName}",
+            "title" => "Profile - ". auth()->user()->firstName,
             "thereIsHeader" => true,
             "thereIsFooter" => false,
             "posts" => $posts,
         ]);
+
     }
 
     public function create()
@@ -53,15 +53,38 @@ class ProfileController
     {
         return view('profile.edit', [
             "title" => "Edit your profile",
+            "thereIsHeader" => true,
             "thereIsFooter" => false,
             "user" => $user,
         ]);
     }
 
 
-    public function update()
+    public function update(Request $request, User $user)
     {
-       dd('updated');
+       $validated = $request->validate([
+            "photo" => "required|image",
+       ]);
+
+       if($validated['photo']) {
+            $pathImage = $validated['photo']->store('photos', 'public');
+            $newValidated['photo'] = $pathImage; 
+            // Em cima apenas peguei a photo vinda do formulário
+            // e a substituí pela photo validada e com o caminho do Storage.
+       }
+    
+        //    $user->update(
+        //     $validated
+        //    );
+
+       $user->thumb = $newValidated['photo'];
+
+       if($user->save()) {
+            return back()->with([
+                "upload" => "Upload realized with success!",
+            ]);
+       }
+
     }
 
     public function destroy($id)

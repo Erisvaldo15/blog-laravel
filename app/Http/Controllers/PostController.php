@@ -25,6 +25,8 @@ class PostController
     public function show(Post $post)
     {
 
+        
+
         return view('post', [
             "title" => "Post - $post->slug",
             "thereIsHeader" => false,
