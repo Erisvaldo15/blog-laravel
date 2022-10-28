@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class ProfileController 
 {
@@ -24,12 +25,33 @@ class ProfileController
 
     public function create()
     {
-        //
+        return view('profile.create-post', [
+            "title" => "New post",
+            "thereIsHeader" => true,
+            "thereIsFooter" => false,
+        ]);
     }
 
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "user_id" => "required|integer",
+            "title" => "required",
+            "slug" => "nullable",
+            "content" => "required",
+            "thumb" => "required|image",
+        ]);
+
+        $validated['thumb'] = $validated['thumb']->store('thumb', 'public');
+        $validated['slug'] = Str::slug($validated['title']);
+
+        if(Post::create($validated)) {
+            return back()->with([
+                "postCreatedWithSuccess" => "Post created with success!",
+            ]);
+        }
+
+
     }
 
     public function show(User $user)

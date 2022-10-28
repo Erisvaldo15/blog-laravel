@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    
-    public function index(Post $post) {
-        
+
+    public function index(User $author) {
         return view('author', [
             "title" => "Blog - Author",
-            "subHeader" => true,
-            "post" => $post
+            "thereIsHeader" => false,
+            "thereIsFooter" => false,
+            "author" => $author
         ]);
         
     }

@@ -22,7 +22,14 @@
                 </button>
             </div>
             <nav class="hidden space-x-10 md:flex">
-                <a href="{{ route('home') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">Home</a>
+                <a href="{{ route('home') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    Home
+                </a>
+                @if (auth()->user() && !route('profile.create'))
+                <a href="{{ route('profile.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    Create a new post
+                </a>
+                @endif
             </nav>
             <form action="{{ route('home') }}" method="get">
                 <input id="search" name="search" type="search"
@@ -40,8 +47,10 @@
                                 focus:ring-offset-2 focus:ring-offset-black"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                {{-- @if ($user->thumb)
-                                    <img src="{{ $user->thumb }}" alt="Image of profile">
+                                @if (auth()->user()->thumb)
+                                    <img src="{{ Storage::url(auth()->user()->thumb) }}"  
+                                    class="inline-block rounded-full ring-2 ring-white" 
+                                    id="photo-profile" alt="Image of profile">
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-2 text-white">
@@ -50,22 +59,22 @@
                                             20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 
                                             0-5.216-.584-7.499-1.632z" />
                                     </svg>
-                                @endif --}}
+                                @endif
                             </button>
                         </div>
-                        <div class="flex flex-col items-center mt-6 hidden absolute right-0 z-10 mt-2 w-48 origin-top-right 
+                        <div class="flex flex-col items-center mt-6 hidden absolute right-0 z-20 mt-2 w-48 origin-top-right 
                         rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                             id="menu-profile">
                             <a href="{{ route('profile.index') }}" id="user-menu-item-0"
-                                class="block px-4 py-2 text-sm
-                            text-gray-700"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            {{-- <a href="{{ route('profile.edit', $user->id) }}" id="user-menu-item-0 "class="block px-4 py-2 text-sm text-gray-700"
-                                role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> --}}
+                            <a href="{{ route('profile.edit', auth()->user()->id) }}" id="user-menu-item-0"
+                                class="block px-4 py-2 hover:bg-orange-600 hover:text-white text-sm text-gray-700" 
+                                role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <a href="{{ route('logout') }}" id="user-menu-item-0"
-                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white" 
+                                role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
                 @else

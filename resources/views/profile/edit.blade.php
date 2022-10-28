@@ -28,7 +28,7 @@
                         </ul>
                     </dd>
                 </div>
-                <div class="bg-orange-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div class="bg-orange-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-dd($request->thumb);6">
                     <dt class="text-sm font-medium text-black">First name</dt>
                     <dd class="mt-1 text-sm text-black sm:col-span-2 sm:mt-0 flex items-center flex-wrap">
                         {{ $user->firstName }}

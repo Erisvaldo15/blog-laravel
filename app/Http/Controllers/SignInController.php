@@ -11,13 +11,12 @@ class SignInController extends Controller
 
     public function index() {
 
-        // dd(session('logged'));
-
         return view('signIn', [
             "title" => "Blog - login",
             "thereIsHeader" => true,
             "thereIsFooter" => false,
         ]);
+        
     }
 
     public function store(Request $request) {

@@ -9,6 +9,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "user_id",
+        "title",
+        "slug",
+        "thumb",
+        "content"
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -20,7 +28,7 @@ class Post extends Model
     public static function search($search) {
         return self::where("title", "like", "%{$search}%")
                 ->orWhere("content", "like", "%{$search}%")
-                ->with(['user', 'comment'])
+                ->with(["user", "comment"])
                 ->paginate(6);
     }   
     
