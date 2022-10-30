@@ -7,21 +7,6 @@ use Illuminate\Http\Request;
 
 class PostController
 {
- 
-    public function index()
-    {
-    }
-
-    public function create()
-    {
-       
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function show(Post $post)
     {
         return view('post', [
@@ -29,21 +14,8 @@ class PostController
             "thereIsHeader" => false,
             "thereIsFooter" => false,
             "post" => $post,
+            "isInAuthorPage" => false,
         ]);
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

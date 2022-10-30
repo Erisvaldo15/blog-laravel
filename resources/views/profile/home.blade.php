@@ -1,8 +1,6 @@
 @extends('template')
 
 @section('content')
-    @include('components.modal_edit')
-
     <div class="section-title">
         <h2><span>Your posts</span></h2>
     </div>

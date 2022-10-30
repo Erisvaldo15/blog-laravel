@@ -13,7 +13,7 @@ use App\Http\Controllers\SignUpController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post');
-Route::get('/author/{author:id}', [AuthorController::class, 'index'])->name('author');
+Route::get('/author/{author:firstName}', [AuthorController::class, 'index'])->name('author');
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
@@ -24,6 +24,6 @@ Route::controller(SignInController::class)->group(function () {
 });
 
 Route::resource('/register', SignUpController::class)->only('store', 'create');
-Route::resource('/profile', ProfileController::class)->parameters(['profile' => 'user'])->middleware([
+Route::resource('/profile', ProfileController::class)->parameters(['profile' => 'user:firstName'])->middleware([
     "auth", "permission"
 ]);

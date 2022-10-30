@@ -15,6 +15,7 @@ class SignInController extends Controller
             "title" => "Blog - login",
             "thereIsHeader" => true,
             "thereIsFooter" => false,
+            "isInAuthorPage" => false,
         ]);
         
     }

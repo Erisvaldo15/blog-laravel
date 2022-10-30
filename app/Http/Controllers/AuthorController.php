@@ -13,7 +13,8 @@ class AuthorController extends Controller
             "title" => "Blog - Author",
             "thereIsHeader" => false,
             "thereIsFooter" => false,
-            "author" => $author
+            "author" => $author,
+            "isInAuthorPage" => true,
         ]);
         
     }
@@ -43,15 +44,5 @@ class AuthorController extends Controller
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

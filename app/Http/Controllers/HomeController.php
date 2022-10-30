@@ -10,7 +10,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // dd(session('logged'));
 
         if($request->input('search')) {
             $thereSearch = true;
@@ -28,6 +27,7 @@ class HomeController extends Controller
             "thereSearch" => $thereSearch,
             'featured' => $this->featured,
             'posts' => $posts,
+            "isInAuthorPage" => false,
         ]);
     }
 
@@ -39,31 +39,4 @@ class HomeController extends Controller
         ]);
     }
     
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-
-    
-
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

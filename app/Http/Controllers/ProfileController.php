@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ProfileController 
+class ProfileController
 {
  
     public function index()
@@ -19,6 +21,7 @@ class ProfileController
             "thereIsHeader" => true,
             "thereIsFooter" => false,
             "posts" => $posts,
+            "isInAuthorPage" => false,
         ]);
 
     }
@@ -29,6 +32,7 @@ class ProfileController
             "title" => "New post",
             "thereIsHeader" => true,
             "thereIsFooter" => false,
+            "isInAuthorPage" => false,
         ]);
     }
 
@@ -78,6 +82,7 @@ class ProfileController
             "thereIsHeader" => true,
             "thereIsFooter" => false,
             "user" => $user,
+            "isInAuthorPage" => false,
         ]);
     }
 
@@ -85,26 +90,28 @@ class ProfileController
     public function update(Request $request, User $user)
     {
        $validated = $request->validate([
-            "photo" => "required|image",
+            "photo" => "nullable|image",
+            "firstName" => "required",
+            "lastName" => "required",
+            "description" => "required",
        ]);
 
-       if($validated['photo']) {
-            $pathImage = $validated['photo']->store('photos', 'public');
-            $newValidated['photo'] = $pathImage; 
-            // Em cima apenas peguei a photo vinda do formulário
-            // e a substituí pela photo validada e com o caminho do Storage.
+       if(Arr::exists($validated, 'photo')) {
+
+            $pathImageDatabase = 'public/'.$user->photo;
+
+            if(Storage::exists($pathImageDatabase)) {
+                Storage::delete($pathImageDatabase);
+            }
+
+            $pathImage = $validated['photo']->store('photos', 'public'); // Apenas peguei a photo vinda do formulário
+            $validated['photo'] = $pathImage; // e a substituí pela photo validada e com o caminho do Storage.
        }
-    
-        //    $user->update(
-        //     $validated
-        //    );
 
-       $user->thumb = $newValidated['photo'];
+       $update = User::where('id', $user->id)->update($validated);
 
-       if($user->save()) {
-            return back()->with([
-                "upload" => "Upload realized with success!",
-            ]);
+       if($update) {
+            return back()->with("upload", "Upload realized with success!");
        }
 
     }

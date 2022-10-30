@@ -21,16 +21,13 @@
                     </svg>
                 </button>
             </div>
-            <nav class="hidden space-x-10 md:flex">
-                <a href="{{ route('home') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    Home
-                </a>
-                @if (auth()->user() && !route('profile.create'))
-                <a href="{{ route('profile.create') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    Create a new post
-                </a>
-                @endif
-            </nav>
+            {{-- @if (!Route::currentRouteName('home'))
+                <nav class="hidden space-x-10 md:flex">
+                    <a href="{{ route('home') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                        Home
+                    </a>
+                </nav>
+            @endif --}}
             <form action="{{ route('home') }}" method="get">
                 <input id="search" name="search" type="search"
                     class="block w-full appearance-none rounded-none 
@@ -47,10 +44,10 @@
                                 focus:ring-offset-2 focus:ring-offset-black"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                @if (auth()->user()->thumb)
-                                    <img src="{{ Storage::url(auth()->user()->thumb) }}"  
-                                    class="inline-block rounded-full ring-2 ring-white" 
-                                    id="photo-profile" alt="Image of profile">
+                                @if (auth()->user()->photo)
+                                    <img src="{{ Storage::url(auth()->user()->photo) }}"
+                                        class="inline-block rounded-full ring-2 ring-white" id="photo-profile"
+                                        alt="Image of profile">
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-2 text-white">
@@ -69,11 +66,14 @@
                             <a href="{{ route('profile.index') }}" id="user-menu-item-0"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="{{ route('profile.edit', auth()->user()->id) }}" id="user-menu-item-0"
-                                class="block px-4 py-2 hover:bg-orange-600 hover:text-white text-sm text-gray-700" 
+                            <a href="{{ route('profile.create') }}" id="user-menu-item-0"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white"
+                                role="menuitem" tabindex="-1" id="user-menu-item-0">Create a new post</a>
+                            <a href="{{ route('profile.edit', auth()->user()->firstName) }}" id="user-menu-item-0"
+                                class="block px-4 py-2 hover:bg-orange-600 hover:text-white text-sm text-gray-700"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <a href="{{ route('logout') }}" id="user-menu-item-0"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white" 
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:text-white"
                                 role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
@@ -106,8 +106,8 @@
                             class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
                             <span class="sr-only">Close menu</span>
                             <!-- Heroicon name: outline/x-mark -->
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>

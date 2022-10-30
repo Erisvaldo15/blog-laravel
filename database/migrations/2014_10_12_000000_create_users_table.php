@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('thumb')->default();
+            $table->string('photo')->default();
             $table->string('firstName', 40);
             $table->string('lastName', 50);
             $table->string('description', 300)->default();

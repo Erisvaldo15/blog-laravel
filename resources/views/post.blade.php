@@ -10,9 +10,13 @@
                             {{ $post->title }}
                         </h1>
                         <p class="mt-4 text-xl text-gray-500">
-                            {{-- <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white" 
-                            src="{{ Storage::url($post->thumb) }}" alt="Photo of profile"> --}}
-                            Created by <span class="font-bold text-black"> {{ $post->user->full_name }} </span> at
+                            Created by
+                            <a href="{{ route('author', $post->user->firstName) }}">
+                                <span class="font-bold text-black hover:text-orange-500"> 
+                                    {{ $post->user->full_name }}
+                                </span>
+                            </a>
+                            at
                             {{ $post->created_at->diffForHumans() }}
                         </p>
                     </div>
@@ -25,8 +29,19 @@
                                     <div class="flex items-center space-x-6 lg:space-x-8">
                                         <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div class="overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                                                    alt="" class="h-full w-full object-cover object-center">
+                                                @if ($post->thumb)
+                                                    <img src="{{ Storage::url($post->thumb) }}"
+                                                        alt="Tall slender porcelain bottle with 
+                                                natural clay textured body and cork stopper"
+                                                        class="h-full w-full object-cover 
+                                                object-center group-hover:opacity-75"
+                                                        id="post-thumb">
+                                                @else
+                                                    <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+                                                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper"
+                                                        class="h-full w-full object-cover object-center group-hover:opacity-75"
+                                                        id="post-thumb">
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -63,14 +78,26 @@
                     @csrf
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <div class="flex justify-center comment-input my-2">
-                        <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white mr-4" id="photo-profile" 
-                        src="{{ Storage::url(auth()->user()->thumb) }}">
+                        @if (auth()->user())
+                            <a href="{{ route('profile.index') }}">
+                                <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white mr-4" id="photo-profile"
+                                    src="{{ Storage::url(auth()->user()->photo) }}">
+                            </a>
+                        @else
+                            <a href="{{ route('author', $post->user->firstName) }}">
+                                <img class="inline-block mr-4 h-10 w-10 rounded-full ring-2 ring-white" id="photo-profile"
+                                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="Image of profile">
+                            </a>
+                        @endif
+
                         @if ($errors->first('comment'))
-                            <textarea class="placeholder:text-red-600 p-3 w-9/12 h-40 rounded-md border-2 border-black outline-orange-600 resize-none" 
-                            name="comment" id="comment" placeholder="{{$errors->first('comment')}}"></textarea>
+                            <textarea
+                                class="placeholder:text-red-600 p-3 w-9/12 h-40 rounded-md border-2 border-black outline-orange-600 resize-none"
+                                name="comment" id="comment" placeholder="{{ $errors->first('comment') }}"></textarea>
                         @else
                             <textarea class="p-3 w-9/12 h-40 rounded-md border-2 border-black outline-orange-600 resize-none" name="comment"
-                            id="comment" placeholder="Add your comment here"></textarea>
+                                id="comment" placeholder="Add your comment here"></textarea>
                         @endif
                     </div>
                     <button type="submit" class="py-2 px-4 text-white rounded bg-orange-600 hover:bg-orange-900">

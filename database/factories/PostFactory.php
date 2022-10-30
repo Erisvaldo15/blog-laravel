@@ -11,13 +11,12 @@ class PostFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence(8);
-        $thumb = $this->faker->image('public/assets/img/posts');
         
         return [
             'title' => $title,
             'slug' => Str::slug($title),
             'user_id' => User::pluck('id')->random(),
-            'thumb' => Str::replace('public', '', $thumb),
+            'thumb' => 'thumb/yYiZKTODaXBbUlC6lCO6IZk3jpyxLYYGlBDnWyFE.jpg',
             'content' => $this->faker->paragraph(5),
         ];
     }

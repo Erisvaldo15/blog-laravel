@@ -11,10 +11,10 @@ class UserFactory extends Factory
    
     public function definition()
     {
-        $thumb = $this->faker->image('public/assets/img/users', 640, 480);
+        $photo = $this->faker->image('public/assets/img/users', 640, 480);
     
         return [
-            'thumb' => Str::replace('public','', $thumb),
+            'photo' => Str::replace('public','', $photo),
             'firstName' => $this->faker->firstName(),
             'lastName' => $this->faker->lastName(),
             'description' => $this->faker->text(300),

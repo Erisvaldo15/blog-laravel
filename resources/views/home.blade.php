@@ -17,9 +17,19 @@
                                 <a href="post/{{ $post->slug }}" class="group hover:bg-orange-500 hover:p-5 rounded">
                                     <div
                                         class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                                        <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-                                            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                                            class="h-full w-full object-cover object-center group-hover:opacity-75">
+                                        @if ($post->thumb)
+                                            <img src="{{ Storage::url($post->thumb) }}"
+                                                alt="Tall slender porcelain bottle with 
+                                            natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover 
+                                            object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @else
+                                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+                                                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @endif
                                     </div>
                                     <div class="content-post">
                                         <h2 class="mt-4 font-bold text-lg text-gray-900 hover:text-gray-500">
@@ -29,9 +39,8 @@
                                             <b class="text-black font-extrabold hover:text-gray-500"> read more </b>
                                         </h3>
                                         <div class="flex justify-evenly">
-                                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="">
+                                            <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white"
+                                            src="{{ Storage::url($post->user->photo) }}" id="photo-profile" alt="Image of profile">
                                             <div class="content-author">
                                                 <h5> {{ $post->user->full_name }} </h5>
                                                 <h6 class="my-1"> Created {{ $post->created_at->diffForHumans() }} </h6>
@@ -75,9 +84,19 @@
                                 <a href="post/{{ $post->slug }}" class="group hover:bg-orange-500 hover:p-5 rounded">
                                     <div
                                         class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                                        <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-                                            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                                            class="h-full w-full object-cover object-center group-hover:opacity-75">
+                                        @if ($post->thumb)
+                                            <img src="{{ Storage::url($post->thumb) }}"
+                                                alt="Tall slender porcelain bottle with 
+                                                natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover 
+                                                object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @else
+                                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+                                                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @endif
                                     </div>
                                     <div class="content-post">
                                         <h2 class="mt-4 font-bold text-lg text-gray-900 hover:text-gray-500">
@@ -87,9 +106,9 @@
                                             <b class="text-black font-extrabold hover:text-gray-500"> read more </b>
                                         </h3>
                                         <div class="flex justify-evenly">
-                                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="">
+                                            <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white"
+                                            src="{{ Storage::url($post->user->photo) }}" id="photo-profile" 
+                                            alt="Image of profile">
                                             <div class="content-author">
                                                 <h5> {{ $post->user->full_name }} </h5>
                                                 <h6 class="my-1"> Created {{ $post->created_at->diffForHumans() }} </h6>
@@ -134,9 +153,19 @@
                                 <a href="post/{{ $post->slug }}" class="group hover:bg-orange-500 hover:p-5 rounded">
                                     <div
                                         class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                                        <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-                                            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                                            class="h-full w-full object-cover object-center group-hover:opacity-75">
+                                        @if ($post->thumb)
+                                            <img src="{{ Storage::url($post->thumb) }}"
+                                                alt="Tall slender porcelain bottle with 
+                                        natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover 
+                                        object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @else
+                                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+                                                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper"
+                                                class="h-full w-full object-cover object-center group-hover:opacity-75"
+                                                id="post-thumb">
+                                        @endif
                                     </div>
                                     <div class="content-post">
                                         <h2 class="mt-4 font-bold text-lg text-gray-900 hover:text-gray-500">
@@ -146,9 +175,8 @@
                                             <b class="text-black font-extrabold hover:text-gray-500"> read more </b>
                                         </h3>
                                         <div class="flex justify-evenly">
-                                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="">
+                                            <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" id="photo-profile"
+                                            src="{{ Storage::url($post->user->photo) }}" alt="Image of profile">
                                             <div class="content-author">
                                                 <h5> {{ $post->user->full_name }} </h5>
                                                 <h6 class="my-1"> Created {{ $post->created_at->diffForHumans() }} </h6>
