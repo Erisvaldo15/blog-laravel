@@ -1,64 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center"> Blog </h1>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  Um blog com feito com Laravel, é possível nele
+  criar posts, adicionar comentários a um post e por aí vai. Minha primeira vez trabalhando com o Vite.
 </p>
 
-## About Laravel
+<div style="display: flex; justify-content: center;">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<div>
+<a href="#orientacoes"> Orientações |</a>
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<div>
+<a href="#tecnologias"> Tecnologias | </a>
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<div>
+<a href="#desafios"> Desafios |</a>
+</div>
 
-## Learning Laravel
+<div>
+<a href="#tecnologias"> Licença </a>
+</div>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+</div>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<p align="center">
+  <img alt="rocketpay" src=".github/project-preview.png" width="100%">
+</p>
 
-## Laravel Sponsors
+## Orientações
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<ul>
+  <li> Para rodar em sua máquina certifique-se de ter o composer e o npm instalador em sua máquina. </li>
+  <li> Com o composer instale as depedencias necessárias para o projeto com composer install.</li>
+  <li> Com o npm instale as depedências necessárias para o projeto com npm install ou npm i. </li>
+  <li> Execute o comando 'php artisan serve' em seu terminal e também o comando 'npm run dev' para executar o vite que é utilizado para trabalhar com CSS e JS. A porta de acesso é o localhost:8000 </li>
+</ul>
 
-### Premium Partners
+## Tecnologias
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<ul>
 
-## Contributing
+<h5 align="center" id="tecnologias"> Foram utilizadas as seguintes tecnologias: </h5>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<li> HTML e CSS (Tailwind.css); </li>
+<li> Javascript E NPM; </li>
+<li> Laravel; </li>
+<li> Vite. </li>
 
-## Code of Conduct
+</ul>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Desafios enfrentados
 
-## Security Vulnerabilities
+<p align="justify" id="desafios"> Este projeto me desafiou muito, principalmente a trabalhar com Laravel, pois percebi que há muito a se aprender sobre esse framework. Tive dificuldades em trabalhar com relacionamentos entre tabelas, sendo a minha primeira vez aplicando esse conceito com Laravel e também aprendi técnicas que melhoraram meu código. </p>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Licença
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p> O projeto está sob a licença MIT. </p>
