@@ -24,6 +24,6 @@ Route::controller(SignInController::class)->group(function () {
 });
 
 Route::resource('/register', SignUpController::class)->only('store', 'create');
-Route::resource('/profile', ProfileController::class)->parameters(['profile' => 'user:firstName'])->middleware([
+Route::resource('/profile', ProfileController::class)->except('destroy')->parameters(['profile' => 'user:firstName'])->middleware([
     "auth", "permission"
 ]);

@@ -10,6 +10,11 @@
                             src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600" alt="Your Company">
                         <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to
                             your account</h2>
+                        @if (session('logout'))
+                            <span class="font-bold text-red-500 text-center mt-6"> 
+                                {{ session('logout') }} 
+                            </span>
+                        @endif
                         @error('not-found')
                             <h3 class="text-center mt-6 text-red-500 font-bold"> {{ $message }} </h3>
                         @enderror

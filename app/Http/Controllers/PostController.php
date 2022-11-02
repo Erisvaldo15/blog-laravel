@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController
 {
@@ -15,6 +15,10 @@ class PostController
             "thereIsFooter" => false,
             "post" => $post,
             "isInAuthorPage" => false,
+            "isLogged" => Auth::check() ? false : true,
+            // verifica se o usuário está logado, se estiver
+            // o 'flex-col' não será ativado, se não estiver
+            // será ativado.
         ]);
     }
 

@@ -12,8 +12,9 @@ class SignUpController extends Controller
     {
         return view("signUp", [
             "title" => "Blog - Sign Up",
-            "subHeader" => false,
+            "thereIsHeader" => true,
             "thereIsFooter" => false,
+            "isInAuthorPage" => false,
         ]);
     }
 
@@ -24,11 +25,11 @@ class SignUpController extends Controller
         $userFound = User::where('email', '=', $validated['email'])->first();
 
         if(!$userFound) {   
-            $create = User::create($validated);
-            return $create;
+            User::create($validated);
+            return back()->with('register-success', 'Register realized with success');
         }
 
-        return back()->withErrors(['found' => 'E-mail já existente']);
+        return back()->withErrors(['found' => 'E-mail already existent']);
     }
 
 }

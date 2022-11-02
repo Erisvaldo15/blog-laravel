@@ -58,23 +58,6 @@ class ProfileController
 
     }
 
-    public function show(User $user)
-    {
-
-        dd('show');
-        // $user = User::where('firstName',$user)->with(['post', 'comment'])->orderBy('id', 'desc')->get();
-
-        // // dd($user);
-        
-        // return view('profile.posts', [
-        //     "title" => "Posts of {$user->first()->firstName}",
-        //     "thereIsFooter" => false,
-        //     "data" => $user,
-        // ]);
-
-    }
-
-   
     public function edit(User $user)
     {
         return view('profile.edit', [
@@ -90,7 +73,7 @@ class ProfileController
     public function update(Request $request, User $user)
     {
        $validated = $request->validate([
-            "photo" => "nullable|image",
+            "photo" => "nullable|image|size:5000",
             "firstName" => "required",
             "lastName" => "required",
             "description" => "required",
@@ -111,14 +94,9 @@ class ProfileController
        $update = User::where('id', $user->id)->update($validated);
 
        if($update) {
-            return back()->with("upload", "Upload realized with success!");
+            return back()->with("updated-success", "Updated realized with success!");
        }
 
     }
 
-    public function destroy($id)
-    {
-        //
-    }
-    
 }

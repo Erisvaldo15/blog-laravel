@@ -2,9 +2,14 @@
 
 @section('content')
     <div class="overflow-hidden bg-white shadow sm:rounded-lg py-1 px-6">
-        <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('profile.update', $user->firstName) }}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf
+            @if (session('updated-success'))
+                <span class="font-bold text-green-600">
+                    {{ session('updated-success') }}
+                </span>
+            @endif
             <div class="border-t border-gray-200">
                 <dl>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

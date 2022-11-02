@@ -1,15 +1,15 @@
 @extends('template')
 
 @section('content')
-    {{-- @if (request()->session()->has('postCreatedWithSuccess'))
-        <h2> {{ $message }} </h2>
-    @endif --}}
     <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+        @if (session('postCreatedWithSuccess'))
+            <span class="font-bold text-green-600"> {{ session('postCreatedWithSuccess') }} </span>
+        @endif
         <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <label for="title-post" class="block text-sm font-medium text-black">Title</label>
-            @error ('title')
+            @error('title')
                 <small class="text-red-500">
                     {{ $message }}
                 </small>
@@ -22,7 +22,7 @@
             </div>
             <div>
                 <label for="content" class="block text-sm font-medium text-black mt-4">Content</label>
-                @error ('content')
+                @error('content')
                     <small class="text-red-500">
                         {{ $message }}
                     </small>
@@ -36,7 +36,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-black mt-4">Cover photo</label>
-                @error ('thumb')
+                @error('thumb')
                     <small class="text-red-500">
                         {{ $message }}
                     </small>

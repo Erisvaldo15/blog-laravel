@@ -12,7 +12,7 @@
                         <p class="mt-4 text-xl text-gray-500">
                             Created by
                             <a href="{{ route('author', $post->user->firstName) }}">
-                                <span class="font-bold text-black hover:text-orange-500"> 
+                                <span class="font-bold text-black hover:text-orange-500">
                                     {{ $post->user->full_name }}
                                 </span>
                             </a>
@@ -77,24 +77,43 @@
                 <form action="{{ route('comment.store') }}" method="post" class="w-full">
                     @csrf
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                    <div class="flex justify-center comment-input my-2">
+                    @if (session('success-comment'))
+                        <span class="font-bold text-green-600">
+                            {{ session('success-comment') }}
+                        </span>
+                    @endif
+
+                    <div @class([
+                        'flex',
+                        'flex-col' => $isLogged,
+                        'items-center',
+                        'justify-center',
+                        'comment-input',
+                        'my-2',
+                    ])>
                         @if (auth()->user())
                             <a href="{{ route('profile.index') }}">
                                 <img class="inline-block h-12 w-12 rounded-full ring-2 ring-white mr-4" id="photo-profile"
                                     src="{{ Storage::url(auth()->user()->photo) }}">
                             </a>
                         @else
-                            <a href="{{ route('author', $post->user->firstName) }}">
-                                <img class="inline-block mr-4 h-10 w-10 rounded-full ring-2 ring-white" id="photo-profile"
-                                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="Image of profile">
+                            <a href="{{ route('view-login') }}"
+                                class="p-2 mb-2 rounded bg-orange-600 text-white hover:bg-orange-900">
+                                Do sign in to comment
                             </a>
                         @endif
 
+                        @error('notLogged')
+                            <span class="font-bold text-red-600">
+                                {{ $message }}
+                            </span>
+                        @enderror
+
+                        {{-- Colocar old no textarea --}}
                         @if ($errors->first('comment'))
                             <textarea
                                 class="placeholder:text-red-600 p-3 w-9/12 h-40 rounded-md border-2 border-black outline-orange-600 resize-none"
-                                name="comment" id="comment" placeholder="{{ $errors->first('comment') }}"></textarea>
+                                name="comment" id="comment"></textarea>
                         @else
                             <textarea class="p-3 w-9/12 h-40 rounded-md border-2 border-black outline-orange-600 resize-none" name="comment"
                                 id="comment" placeholder="Add your comment here"></textarea>

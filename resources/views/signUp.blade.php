@@ -7,11 +7,16 @@
                 <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600"
                     alt="Your Company">
                 <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create your account</h2>
-                @error('found')
+                @error('registered-success-or-fail')
                     <h3 class="mt-2 text-red-500 text-center">
                         {{ $message }}
                     </h3>
                 @enderror
+                @if('register-success')
+                    <h3 class="font-bold mt-2 text-green-600 text-center">
+                        {{ session('register-success') }}
+                    </h3>
+                @endif
             </div>
             <form class="mt-8 space-y-6" action="{{ route('register.store') }}" method="POST">
                 @csrf

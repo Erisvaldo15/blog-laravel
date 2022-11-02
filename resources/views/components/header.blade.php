@@ -5,7 +5,7 @@
                 <a href="{{ route('home') }}">
                     <span class="sr-only">Your Company</span>
                     <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600"
-                        alt="">
+                        alt="Logo of website">
                 </a>
             </div>
             <div class="-my-2 -mr-2 md:hidden">
@@ -21,13 +21,6 @@
                     </svg>
                 </button>
             </div>
-            {{-- @if (!Route::currentRouteName('home'))
-                <nav class="hidden space-x-10 md:flex">
-                    <a href="{{ route('home') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Home
-                    </a>
-                </nav>
-            @endif --}}
             <form action="{{ route('home') }}" method="get">
                 <input id="search" name="search" type="search"
                     class="block w-full appearance-none rounded-none 
